@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Партнёр по развитию выручки детских игровых центров</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Kalam:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF8F1;
+    --paper-line:#DCE6E8;
+    --ink:#262220;
+    --ink-soft:#5b5550;
+    --mint:#7FD9C4;
+    --mint-deep:#3FA890;
+    --pink:#F49AC2;
+    --pink-deep:#D6679F;
+    --yellow:#F4D35E;
+    --yellow-deep:#D9A91E;
+    --blue:#8FC1E8;
+    --blue-deep:#3E7FB3;
+    --max:1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 37px,
+        var(--paper-line) 38px
+      );
+    background-attachment:local;
+    overflow-x:hidden;
+  }
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+
+  .marker-underline{
+    position:relative;
+    display:inline-block;
+  }
+  .marker-underline::after{
+    content:'';
+    position:absolute;
+    left:-4px; right:-4px; bottom:0.04em;
+    height:0.38em;
+    background:var(--yellow);
+    opacity:.65;
+    z-index:-1;
+    border-radius:2px;
+    transform:rotate(-0.6deg);
+  }
+
+  h1,h2,h3,.hand{
+    font-family:'Caveat',cursive;
+    font-weight:700;
+    letter-spacing:.2px;
+  }
+
+  .eyebrow{
+    font-family:'Kalam',cursive;
+    font-size:.95rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,248,241,.88);
+    backdrop-filter:blur(6px);
+    border-bottom:2px solid var(--ink);
+  }
+  nav .inner{
+    max-width:var(--max); margin:0 auto; padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family:'Caveat',cursive;
+    font-size:1.7rem; font-weight:700;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{width:10px;height:10px;background:var(--pink);border-radius:50%;display:inline-block;}
+  .navlinks{display:flex; gap:28px; font-size:.95rem; font-weight:600;}
+  .navlinks a{color:var(--ink); text-decoration:none; opacity:.75; transition:opacity .2s;}
+  .navlinks a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--ink); color:var(--paper); padding:9px 18px;
+    border-radius:8px; font-weight:700; font-size:.9rem;
+    text-decoration:none; white-space:nowrap;
+  }
+  @media (max-width:760px){ .navlinks{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:90px 0 70px;
+    position:relative;
+  }
+  .hero .inner{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:52px; align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,5.4vw,4.4rem);
+    line-height:1.08;
+    margin-bottom:22px;
+  }
+  .hero p.lead{
+    font-size:1.18rem; color:var(--ink-soft); max-width:520px; margin-bottom:30px;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:10px; font-weight:700;
+    text-decoration:none; font-size:1rem;
+    border:2px solid var(--ink);
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-secondary{background:transparent; color:var(--ink);}
+
+  .stat-strip{
+    display:flex; gap:0; margin-top:46px; flex-wrap:wrap;
+    border-top:2px solid var(--ink); padding-top:22px;
+  }
+  .stat-strip .stat{flex:1; min-width:140px; padding-right:18px;}
+  .stat-strip .stat strong{font-family:'Caveat',cursive; font-size:2.2rem; display:block; color:var(--pink-deep);}
+  .stat-strip .stat span{font-size:.86rem; color:var(--ink-soft);}
+
+  .hero-art{
+    position:relative; aspect-ratio:1/1; max-width:420px; margin:0 auto;
+  }
+  .hero-art .hand-blob{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 30% 30%, var(--mint) 0 30%, transparent 31%),
+      radial-gradient(circle at 70% 25%, var(--yellow) 0 22%, transparent 23%),
+      radial-gradient(circle at 65% 70%, var(--pink) 0 28%, transparent 29%);
+    filter:blur(0px);
+    opacity:.9;
+    border-radius:48% 52% 55% 45%/45% 50% 50% 55%;
+    animation:blobshift 9s ease-in-out infinite;
+  }
+  @keyframes blobshift{
+    0%,100%{border-radius:48% 52% 55% 45%/45% 50% 50% 55%;}
+    50%{border-radius:55% 45% 48% 52%/52% 48% 55% 45%;}
+  }
+  .hero-art .emoji-ring{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:3.6rem;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:78px 0; position:relative;}
+  .section-head{margin-bottom:46px; max-width:680px;}
+  .section-head h2{font-size:clamp(2rem,4vw,2.9rem); margin:8px 0 14px;}
+  .section-head p{color:var(--ink-soft); font-size:1.06rem;}
+
+  .filmstrip{
+    height:26px; width:100%;
+    background-image: radial-gradient(circle, var(--ink) 3px, transparent 3.5px);
+    background-size:26px 26px;
+    background-position:13px center;
+    opacity:.18;
+  }
+
+  /* ---------- BENEFITS ---------- */
+  .benefit-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  .benefit-card{
+    background:#fff; border:2px solid var(--ink); border-radius:16px;
+    padding:26px; position:relative; transition:transform .2s;
+  }
+  .benefit-card:hover{transform:translateY(-4px) rotate(-0.4deg);}
+  .benefit-card .tag{
+    display:inline-block; font-family:'Kalam',cursive; font-weight:700;
+    font-size:.82rem; padding:4px 12px; border-radius:20px; margin-bottom:14px;
+  }
+  .benefit-card h3{font-size:1.5rem; margin-bottom:8px; font-family:'Inter'; font-weight:800;}
+  .benefit-card p{color:var(--ink-soft); font-size:.95rem;}
+  .tag.c1{background:var(--mint);} .tag.c2{background:var(--pink);} .tag.c3{background:var(--yellow);}
+  .tag.c4{background:var(--blue);} .tag.c5{background:var(--mint);} .tag.c6{background:var(--pink);}
+
+  @media (max-width:900px){ .benefit-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:600px){ .benefit-grid{grid-template-columns:1fr;} }
+
+  /* ---------- WHY US numbered ---------- */
+  .why-list{display:flex; flex-direction:column; gap:0;}
+  .why-row{
+    display:grid; grid-template-columns:90px 1fr; gap:24px;
+    padding:26px 0; border-bottom:2px dashed var(--ink-soft);
+    align-items:start;
+  }
+  .why-row:first-child{border-top:2px dashed var(--ink-soft);}
+  .why-num{font-family:'Caveat',cursive; font-size:3.2rem; color:var(--mint-deep); line-height:1;}
+  .why-row h3{font-family:'Inter'; font-weight:800; font-size:1.25rem; margin-bottom:6px;}
+  .why-row p{color:var(--ink-soft);}
+
+  /* ---------- SERVICES (from presentation) ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  .service-card{
+    background:#fff; border:2px solid var(--ink); border-radius:18px;
+    padding:24px 20px; text-align:center;
+  }
+  .service-card .icon{font-size:2.4rem; margin-bottom:10px; display:block;}
+  .service-card h3{font-family:'Inter'; font-weight:800; font-size:1.05rem; margin-bottom:8px;
+    padding:4px 10px; border-radius:8px; display:inline-block;}
+  .service-card p{font-size:.88rem; color:var(--ink-soft);}
+  @media (max-width:900px){ .services-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .services-grid{grid-template-columns:1fr;} }
+
+  /* ---------- INNOVATION LOOP ---------- */
+  .innovation{
+    background:var(--ink); color:var(--paper); border-radius:24px;
+    padding:54px 40px; position:relative; overflow:hidden;
+  }
+  .innovation h2{color:var(--paper);}
+  .innovation .section-head p{color:#cfc9c2;}
+  .loop-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:36px;}
+  .loop-item{
+    border:2px solid #4a443e; border-radius:14px; padding:20px;
+    background:rgba(255,255,255,.04);
+  }
+  .loop-item .n{font-family:'Caveat',cursive; font-size:2rem; color:var(--yellow);}
+  .loop-item h4{font-size:1.05rem; margin:6px 0; font-weight:700;}
+  .loop-item p{font-size:.86rem; color:#cfc9c2;}
+  .innovation .note{
+    margin-top:30px; padding-top:24px; border-top:1px solid #4a443e;
+    font-size:.92rem; color:#cfc9c2; max-width:680px;
+  }
+  @media (max-width:900px){ .loop-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .loop-grid{grid-template-columns:1fr;} .innovation{padding:36px 22px;} }
+
+  /* ---------- GIFTS / LOYALTY ---------- */
+  .bubble-row{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .bubble{
+    background:#fff; border:2px solid var(--ink); border-radius:50% 50% 50% 6%/ 30% 30% 30% 30%;
+    padding:38px 28px; text-align:center; position:relative;
+  }
+  .bubble h3{font-family:'Inter'; font-weight:800; font-size:1.1rem; margin-bottom:10px;}
+  .bubble p{font-size:.9rem; color:var(--ink-soft);}
+  @media (max-width:900px){ .bubble-row{grid-template-columns:1fr;} }
+
+  /* ---------- PARTNERS ---------- */
+  .partners-strip{
+    display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:8px;
+  }
+  .partner-chip{
+    border:2px solid var(--ink); border-radius:30px; padding:10px 22px;
+    font-weight:700; font-family:'Kalam',cursive; background:#fff;
+  }
+
+  /* ---------- DEAL MODEL ---------- */
+  .deal-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .deal-card{
+    border:2px solid var(--ink); border-radius:18px; padding:30px; background:#fff;
+  }
+  .deal-card.highlight{background:var(--yellow);}
+  .deal-card h3{font-family:'Inter'; font-weight:800; font-size:1.3rem; margin-bottom:12px;}
+  .deal-card p{color:var(--ink-soft); font-size:.96rem;}
+  .deal-or{
+    text-align:center; font-family:'Caveat',cursive; font-size:2rem; margin:18px 0;
+  }
+  @media (max-width:760px){ .deal-grid{grid-template-columns:1fr;} }
+
+  /* ---------- CTA / CONTACT ---------- */
+  .cta-section{
+    text-align:center; padding:90px 0;
+  }
+  .cta-section h2{font-size:clamp(2.2rem,5vw,3.4rem); margin-bottom:18px;}
+  .cta-section p{color:var(--ink-soft); font-size:1.1rem; margin-bottom:34px; max-width:520px; margin-inline:auto;}
+  .contact-card{
+    display:inline-flex; align-items:center; gap:16px; background:#fff;
+    border:2px solid var(--ink); border-radius:16px; padding:18px 28px; margin-top:10px;
+  }
+  .contact-card .avatar{
+    width:46px; height:46px; border-radius:50%; background:var(--mint);
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-family:'Inter';
+  }
+  .contact-card a{color:var(--ink); text-decoration:none; font-weight:700;}
+
+  footer{
+    border-top:2px solid var(--ink); padding:30px 0; text-align:center;
+    font-size:.85rem; color:var(--ink-soft);
+  }
+
+  /* shared rotation accents */
+  .rot-1{transform:rotate(-1.2deg);}
+  .rot-2{transform:rotate(1deg);}
+
+  /* fade in on scroll */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.show{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo"><span class="dot"></span>Moments<span style="color:var(--pink-deep)">.</span></div>
+    <div class="navlinks">
+      <a href="#benefits">Выгода</a>
+      <a href="#services">Услуги</a>
+      <a href="#why">Почему мы</a>
+      <a href="#model">Модель работы</a>
+      <a href="#partners">Партнёры</a>
+    </div>
+    <a class="nav-cta" href="#contact">Обсудить сотрудничество</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap inner">
+    <div>
+      <p class="eyebrow">Партнёр по развитию выручки детских игровых центров</p>
+      <h1>Вы даёте поток.<br><span class="marker-underline">Мы превращаем его</span><br>в деньги и воспоминания.</h1>
+      <p class="lead">Аквагрим, фотосъёмка, мобилография и сувениры — мы встраиваемся в работу вашего парка как собственный отдел впечатлений, без вложений с вашей стороны.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Обсудить сотрудничество →</a>
+        <a href="#services" class="btn btn-secondary">Что мы делаем</a>
+      </div>
+      <div class="stat-strip">
+        <div class="stat"><strong>5+</strong><span>лет на детских мероприятиях</span></div>
+        <div class="stat"><strong>20+</strong><span>дополнительных продуктов для роста выручки</span></div>
+        <div class="stat"><strong>4</strong><span>парка уже работают с нами</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="hand-blob"></div>
+      <div class="emoji-ring">🎨📸✨</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap"><div class="filmstrip"></div></div>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">В чём выгода для площадки</p>
+      <h2>Доход растёт.<br>Хлопот не прибавляется.</h2>
+      <p>Мы берём на себя всё, что связано с дополнительными впечатлениями для гостей — вы получаете результат.</p>
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit-card reveal"><span class="tag c1">без вложений</span><h3>Дополнительный доход</h3><p>Новый источник выручки без затрат на оборудование, персонал и обучение с вашей стороны.</p></div>
+      <div class="benefit-card reveal"><span class="tag c2">для гостей</span><h3>Выше удовлетворённость</h3><p>Гости получают яркие впечатления — и возвращаются в парк снова.</p></div>
+      <div class="benefit-card reveal"><span class="tag c3">средний чек</span><h3>Больше трат на гостя</h3><p>Аквагрим, фото и сувениры увеличивают сумму, которую семья оставляет за визит.</p></div>
+      <div class="benefit-card reveal"><span class="tag c4">для семей</span><h3>Доп. сервисы</h3><p>Родители получают готовый повод задержаться в парке дольше — и сделать его особенным.</p></div>
+      <div class="benefit-card reveal"><span class="tag c5">для команды парка</span><h3>Снижение нагрузки</h3><p>Мы берём весь процесс на себя — от обучения сотрудников до решения жалоб гостей.</p></div>
+      <div class="benefit-card reveal"><span class="tag c6">на перспективу</span><h3>Новые направления</h3><p>VR-зоны, выездные праздники, благотворительные проекты — растём вместе с парком.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="filmstrip"></div></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Наши услуги</p>
+      <h2>Всё, что нужно для ярких воспоминаний</h2>
+      <p>Команда уже работает на детских мероприятиях — здесь то, что мы делаем сегодня в парках-партнёрах.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="icon">🎨</span>
+        <h3 style="background:var(--mint)">Аквагрим</h3>
+        <p>Бабочки, супергерои, животные — и любые идеи по желанию ребёнка.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="icon">📷</span>
+        <h3 style="background:var(--pink)">Фотосъёмка</h3>
+        <p>Профессиональные живые, эмоциональные снимки мероприятия.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="icon">🎬</span>
+        <h3 style="background:var(--yellow)">Мобилография</h3>
+        <p>Короткие динамичные видео для Instagram и TikTok — формат, который любят дети и родители.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="icon">🎁</span>
+        <h3 style="background:var(--blue)">Сувениры</h3>
+        <p>Магниты, стикеры, значки — подарок каждому гостю при заказе аквагрима.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="filmstrip"></div></div>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Почему мы</p>
+      <h2>Мы работаем как часть вашей команды</h2>
+    </div>
+    <div class="why-list">
+      <div class="why-row reveal"><div class="why-num">01</div><div><h3>Мы не «делаем фото» — мы управляем эмоциями гостей</h3><p>Каждый ребёнок проходит через позитивный опыт взаимодействия — съёмка происходит органично, без стресса и давления.</p></div></div>
+      <div class="why-row reveal"><div class="why-num">02</div><div><h3>Персонал работает как часть развлечения парка</h3><p>Не как отдельный подрядчик со своей стойкой в углу — а как часть атмосферы, которую видят гости.</p></div></div>
+      <div class="why-row reveal"><div class="why-num">03</div><div><h3>Финансовая прозрачность (open book)</h3><p>Открытая отчётность, понятное распределение доходов, согласование ключевых расходов — без скрытых операций.</p></div></div>
+      <div class="why-row reveal"><div class="why-num">04</div><div><h3>Полная адаптация под стиль парка</h3><p>Форма персонала, фотозоны и аквастойки — под цветовую палитру и логотип вашей площадки.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="filmstrip"></div></div>
+
+<!-- INNOVATION LOOP -->
+<section id="innovation">
+  <div class="wrap">
+    <div class="innovation reveal">
+      <div class="section-head">
+        <p class="eyebrow" style="color:#cfc9c2">Инновационные решения</p>
+        <h2>Больше 20 продуктов для роста выручки</h2>
+        <p>Мы предлагаем решения, которых пока нет или почти нет на рынке семейных развлечений региона.</p>
+      </div>
+      <div class="loop-grid">
+        <div class="loop-item"><div class="n">→</div><h4>Инновационные решения</h4><p>Новые форматы, которых ещё нет у конкурентов в регионе.</p></div>
+        <div class="loop-item"><div class="n">→</div><h4>Рост выручки</h4><p>Новые источники дохода для площадки без вложений с её стороны.</p></div>
+        <div class="loop-item"><div class="n">→</div><h4>Увеличение среднего чека</h4><p>Каждый гость оставляет больше за счёт дополнительных услуг.</p></div>
+        <div class="loop-item"><div class="n">→</div><h4>Повышение вовлечённости</h4><p>Гости задерживаются дольше и возвращаются чаще.</p></div>
+      </div>
+      <p class="note">Подробное описание решений и механик не публикуется в открытом доступе — это часть интеллектуального капитала проекта. Детали — по запросу после предварительного обсуждения.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="filmstrip"></div></div>
+
+<!-- GIFTS -->
+<section id="gifts">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Подарок каждому гостю</p>
+      <h2>Маленький сюрприз — большая лояльность</h2>
+    </div>
+    <div class="bubble-row">
+      <div class="bubble reveal"><h3>🎁 Подарки для детишек</h3><p>Каждый ребёнок получает подарок при заказе аквагрима — приятный сюрприз, который запоминается.</p></div>
+      <div class="bubble reveal"><h3>📱 Контент для соцсетей</h3><p>Готовые материалы для публикаций — родители делятся ими и рекомендуют парк.</p></div>
+      <div class="bubble reveal"><h3>🔁 Повторные гости</h3><p>Яркие впечатления возвращают семьи снова и снова на следующие мероприятия.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="filmstrip"></div></div>
+
+<!-- DEAL MODEL -->
+<section id="model">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Коммерческое предложение</p>
+      <h2>Две модели сотрудничества</h2>
+      <p>Выбираем тот формат, который удобен именно вашей площадке.</p>
+    </div>
+    <div class="deal-grid">
+      <div class="deal-card highlight reveal">
+        <h3>🤝 Партнёрская модель</h3>
+        <p>Разделение выручки по обсуждаемому процент­у. Вы даёте поток гостей — мы превращаем его в доход для обеих сторон. Полная финансовая прозрачность (open book).</p>
+      </div>
+      <div class="deal-card reveal">
+        <h3>📄 Арендная модель</h3>
+        <p>Конкурентная арендная ставка, превышающая условия предыдущего арендатора, при заключении долгосрочного договора.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="filmstrip"></div></div>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="wrap">
+    <div class="section-head reveal" style="text-align:center; margin-inline:auto;">
+      <p class="eyebrow">Нам доверяют</p>
+      <h2>Текущие и реализованные проекты</h2>
+    </div>
+    <div class="partners-strip reveal">
+      <div class="partner-chip">PlayPark</div>
+      <div class="partner-chip">Alem Kids</div>
+      <div class="partner-chip">Like Park</div>
+      <div class="partner-chip">Balapan Park</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Готовы к сотрудничеству?</p>
+    <h2>Мы создаём не просто фото —<br>мы создаём <span class="marker-underline">воспоминания</span>.</h2>
+    <p>Расскажите о своей площадке — подберём формат, который подойдёт именно вам: партнёрство по выручке или аренду точки.</p>
+    <div class="contact-card">
+      <div class="avatar">Н</div>
+      <div style="text-align:left">
+        <div style="font-size:.85rem; color:var(--ink-soft)">Контакт для связи</div>
+        <a href="tel:+77022808022">+7 702 280 80 22 · Нурбек</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Moments · Партнёр по развитию выручки детских игровых центров</div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); } });
+  }, {threshold:0.15});
+  items.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
